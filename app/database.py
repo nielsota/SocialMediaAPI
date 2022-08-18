@@ -29,14 +29,14 @@ def get_db():
         db.close()
 
 # For reference, not using since migrating to sqlalchemy
-while True:
-    try:
-        conn = psycopg2.connect(host='localhost', database='fastapi', user='postgres', password='123', cursor_factory=RealDictCursor)
-        cursor = conn.cursor()
-        print('Database connection established')
-        break
-    except Exception as error:
-        print('Database connection failed')
-        print(f'Error: {error}')
-        time.sleep(2)
+#while True:
+#    try:
+#        conn = psycopg2.connect(host='localhost', database='fastapi', user='postgres', password='123', cursor_factory=RealDictCursor)
+#        cursor = conn.cursor()
+#        print('Database connection established')
+#        break
+#    except Exception as error:
+#        print('Database connection failed')
+#        print(f'Error: {error}')
+#        time.sleep(2)
 

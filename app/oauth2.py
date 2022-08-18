@@ -56,7 +56,7 @@ def verify_access_token(token: str, credentials_exception):
 def get_current_user(
     token: str = Depends(oauth_scheme),
     db: Session = Depends(get_db)):
-    '''depending on this function means you expect a password to be passed to the route '''
+    '''depending on oathh_scheme means you expect a token to be passed as a bearer'''
     
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
