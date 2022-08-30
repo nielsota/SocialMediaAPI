@@ -29,7 +29,7 @@ app.add_middleware(
 # first path operation
 @app.get("/")
 def root():
-    return {"message": "Welcome to the posts API!"}
+    return {"message": "Welcome to the statespacing API!"}
 
 app.include_router(posts.router)
 app.include_router(users.router)
