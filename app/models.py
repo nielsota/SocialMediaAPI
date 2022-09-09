@@ -3,7 +3,10 @@ from enum import unique
 # File responsible for defining schema in database #
 ####################################################
 
+# the base object gets passed from database.py to here, and then used in main and testing
 from .database import Base
+
+
 from sqlalchemy import TIMESTAMP, Column, ForeignKey, Integer, String, Boolean, text
 from sqlalchemy.orm import relationship
 

@@ -52,7 +52,7 @@ def verify_access_token(token: str, credentials_exception):
     return token_data
 
 
-# this function will be injected as a dependency for anyone who wants to log in
+# this function will be injected as a depedency for anyone who wants to log in
 def get_current_user(
     token: str = Depends(oauth_scheme),
     db: Session = Depends(get_db)):

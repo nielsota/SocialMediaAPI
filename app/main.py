@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 # if the API will be used by a specific website, specify the orgins of that website here
-origins = ['https://www.google.com']
+origins = ['*']
 
 app.add_middleware(
     CORSMiddleware,
