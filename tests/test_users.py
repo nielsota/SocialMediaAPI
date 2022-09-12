@@ -3,11 +3,9 @@ from jose import jwt
 import pytest
 
 from app.main import app
-from app import schemas, models
-
-from .database import client, session
-from app import schemas
 from app.config import settings
+
+from app import schemas, models
 
 @pytest.fixture()
 def test_user(client):
@@ -51,9 +49,16 @@ def test_login_user(client, test_user):
 
     # decode the token
     decoded_access_token = jwt.decode(login_response.access_token, settings.secret_key, algorithms=[settings.algorithm])
-    print(decoded_access_token)
-    print(test_user)
 
     # check id is correct
-    #assert test_user['id'] == decoded_access_token.get['user_id']
+    assert test_user['id'] == decoded_access_token['user_id']
 
+@pytest.mark.parametrize("email, password, status_code", [
+    ('wrongemail@gmail.com', 'password123', 403),
+    ('forrestota@gmail.com', 'wrongpassword', 403),
+    ('wrongemail@gmail.com', 'wrongpassword', 403),
+    (None, 'password123', 422),
+    ('forrestota@gmail.com', None, 422) ])
+def test_incorrect_login(client, test_user, email, password, status_code):
+    response = client.post('/login', data={"username": email, "password": password})
+    assert response.status_code == status_code
