@@ -79,9 +79,10 @@ def get_post(
     post = db.query(models.Posts, func.count(models.Votes.post_id).label("votes"))\
         .join(models.Votes, models.Posts.id == models.Votes.post_id, isouter=True)\
             .group_by(models.Posts.id)\
-                .first()
+                .filter(models.Posts.id == id) \
+                    .first()
 
-    if post is None:
+    if not post:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail= f"post with id: {id} was not found"

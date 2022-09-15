@@ -1,0 +1,13 @@
+name: Build and Delpoy Code
+
+on: [push, pull_request]
+
+jobs:
+  job1: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pulling Git Repo
+        uses: actions/checkout@v3
+      - name: Say Hi to Niels
+        run: echo "Hi Niels how are you doing? :)"

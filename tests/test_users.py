@@ -26,19 +26,6 @@ def test_root(client):
     assert response.status_code == 200
     assert response.json().get('message') == 'Welcome to the statespacing API!'
 
-def test_create_user(client):
-
-    response = client.post('/users/', json={"email": "forrestota@gmail.com", "password": "password123"})
-
-    # check return code
-    assert response.status_code == 201
-
-    # perform schema validation
-    new_user = schemas.UserReturn(**response.json())
-
-    # check email
-    new_user.email = "forrestota@gmail.com"
-
 def test_login_user(client, test_user):
 
     response = client.post('/login', data={"username": test_user["email"], "password": test_user["password"]})

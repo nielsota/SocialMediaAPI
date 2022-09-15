@@ -23,6 +23,7 @@ def vote(
     # check if post exists in post database
     post = db.query(models.Posts).filter(models.Posts.id == vote.post_id).first()
     if post is None:
+        print('here')
         raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=f"Post with ID: {vote.post_id} does not exist"
